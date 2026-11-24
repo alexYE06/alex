@@ -1,0 +1,35 @@
+### 1. Listar los libros de la categoría Literatura -> Estado: 200 OK
+GET http://localhost:3000/libros?categoria=Literatura
+
+### 2. Buscar "Vargas" en cualquier campo de los libros -> Estado: 200 OK
+GET http://localhost:3000/libros?q=Vargas
+
+### 3. Crear un libro nuevo -> Estado: 201 Created
+POST http://localhost:3000/libros
+Content-Type: application/json
+
+{
+  "isbn": "9788497592208",
+  "titulo": "Cien años de soledad",
+  "autor": "Gabriel García Márquez",
+  "categoria": "Literatura",
+  "anio": 1967,
+  "disponible": true
+}
+
+### 4. Marcar como disponible el libro 2 cambiando un solo campo -> Estado: 200 OK
+PATCH http://localhost:3000/libros/2
+Content-Type: application/json
+
+{
+  "disponible": true
+}
+
+### 5. Listar los préstamos activos del usuario 2 -> Estado: 200 OK
+GET http://localhost:3000/prestamos?usuarioId=2&estado=activo
+
+### 6a. Eliminar el libro creado (id 7) -> Estado: 200 OK
+DELETE http://localhost:3000/libros/7
+
+### 6b. Comprobar con un GET que ya no existe -> Estado: 404 Not Found
+GET http://localhost:3000/libros/7
